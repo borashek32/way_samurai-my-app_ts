@@ -1,82 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React, {useState} from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
+type UserType = {
+    id: number
+    name: string
+    age: number
+}
+
+function User(props: UserType) {
+    return (
+        <li>User {props.name}: {props.age} y.o.</li>
+    )
+}
+
+function UsersList() {
+    const state = [
+        {id: 1, name: "Bob", age: 34},
+        {id: 2, name: "Alex", age: 25},
+        {id: 3, name: "Ann", age: 30},
+        {id: 4, name: "John", age: 23},
+    ]
+    const users = [
+        {id: 1, userName: "Bob", age: 34},
+        {id: 2, userName: "Alex", age: 25},
+        {id: 3, userName: "Ann", age: 30},
+        {id: 4, userName: "John", age: 23},
+    ]
+
+    const [usersList, setUsersList] = useState<Array<UserType>>(state)
+    return (
+        <main>
+            <h5>User list:</h5>
+            <p>Тут будет список пользователей</p>
+        </main>
+    )
+}
+
+ReactDOM.render(
+    <UsersList/>, document.getElementById('root')
 );
-root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
-);
+// Что надо написать вместо XXX, чтобы код работал?
+// ❗ Если мы отмапим массив, то должны увидеть данные пользователей
+// ❗ Ответ дать минимально возможным объёмом кода
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
-
-
-// let a = {
-//     name: "nat",
-//     age: 34,
-//     address: {
-//         country: "Turkey",
-//         city: "Alanya"
-//     }
-// };
-// console.log(a);
-
-// let users = [
-//     {
-//         name: "nat",
-//         age: 34,
-//         address: {
-//             country: "Turkey",
-//             city: "Alanya"
-//         }
-//     },
-//     {
-//         name: "polina",
-//         age: 8,
-//         address: {
-//             country: "Turkey",
-//             city: "Alanya"
-//         }
-//     },
-//     {
-//         name: "igor",
-//         age: 5,
-//         address: {
-//             country: "Turkey",
-//             city: "Alanya"
-//         }
-//     },
-//     {
-//         name: "vadim",
-//         age: 37,
-//         address: {
-//             country: "Turkey",
-//             city: "Alanya"
-//         }
-//     }
-// ];
-// console.log(users[0].address.country);
-
-// let b: boolean = true;
-// let b = true;
-// b = 10;
-// b = "nat";
-// b = true;
-// console.log(b);
-
-// let a: any; // говнокод
-// let a;
-// let a: Array<number>; // задаем пустой массив чисел, в массиве могут быть строки и числа <string | number>
-// a = [1, 2, 3, 4, 5];
-// a = [];
-// a = [4, 6, 7];
-// a = ["hello", "no"]; // нельзя
-// console.log(a);
